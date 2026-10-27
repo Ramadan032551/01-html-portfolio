@@ -1,0 +1,342 @@
+/* Define the portfolio's colors, spacing, shape, and content width. */
+:root {
+  color-scheme: light;
+  --color-bg: #f4f7fb;
+  --color-surface: #ffffff;
+  --color-text: #172033;
+  --color-muted: #5b667a;
+  --color-accent: #176b87;
+  --color-accent-hover: #0c4c63;
+  --color-border: #dfe5ee;
+  --color-skill-bg: #eef7f9;
+  --color-skill-border: #d5e8ed;
+  --color-header: rgb(255 255 255 / 94%);
+  --color-focus: #0c4c63;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.5rem;
+  --radius: 1rem;
+  --max-width: 1100px;
+}
+
+/* Apply the reset, system typeface, smooth scrolling, and page colors. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide the skip link until keyboard users focus it. */
+.skip-link {
+  position: fixed;
+  z-index: 20;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  transform: translateY(calc(-100% - var(--space-3)));
+  border-radius: calc(var(--radius) * 0.5);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Scale headings fluidly to keep them readable across screen sizes. */
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+h2 {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
+h3 {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+/* Keep images and form controls responsive and consistent with body text. */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Keep the name and navigation aligned in a sticky, responsive site header. */
+header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  padding-inline: max(var(--space-4), calc((100% - var(--max-width)) / 2));
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-header);
+  backdrop-filter: blur(12px);
+}
+
+header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header nav a {
+  display: inline-block;
+  padding-block: var(--space-2);
+  color: var(--color-muted);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Center the main content and separate each topic into a clear surface. */
+main,
+footer {
+  width: min(100% - 2 * var(--space-4), var(--max-width));
+  margin-inline: auto;
+}
+
+main {
+  padding-block: var(--space-6);
+}
+
+main > section {
+  margin-bottom: var(--space-5);
+  padding: clamp(var(--space-5), 5vw, var(--space-6));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: 0 8px 24px rgb(23 32 51 / 4%);
+  scroll-margin-top: 6rem;
+}
+
+main > section:last-child {
+  margin-bottom: 0;
+}
+
+/* Place the about text and portrait side by side when space allows. */
+#about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(140px, 220px);
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+}
+
+#about h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+#about p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+#about img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+/* Display the eight skills as flexible, wrapping pill badges. */
+#skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#skills li {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-skill-border);
+  border-radius: 999px;
+  background: var(--color-skill-bg);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Lay out project cards responsively and lift each card on hover or focus. */
+#projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+#projects h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+#projects article {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) * 0.75);
+  background: var(--color-surface);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+#projects article:hover,
+#projects article:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgb(23 32 51 / 12%);
+}
+
+#projects article p {
+  color: var(--color-muted);
+}
+
+/* Use the muted text color for supporting details in the contact section. */
+#contact p {
+  color: var(--color-muted);
+}
+
+#contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Give the page footer a clear boundary and comfortable breathing room. */
+footer {
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Make links and buttons visibly interactive, including for keyboard users. */
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition: color 160ms ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+a:focus-visible,
+button:focus-visible {
+  border-radius: 0.2rem;
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* Stack the header and about content on narrow screens. */
+@media (max-width: 600px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+  }
+
+  header nav ul {
+    justify-content: flex-start;
+    gap: var(--space-1) var(--space-4);
+  }
+
+  #about {
+    grid-template-columns: 1fr;
+  }
+
+  #about img {
+    width: min(100%, 220px);
+  }
+}
+
+/* Use dark surfaces and light text when the visitor prefers a dark theme. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #101722;
+    --color-surface: #182331;
+    --color-text: #edf2f7;
+    --color-muted: #b3bfce;
+    --color-accent: #82d8ee;
+    --color-accent-hover: #b5effb;
+    --color-border: #324153;
+    --color-skill-bg: #203a46;
+    --color-skill-border: #375a66;
+    --color-header: rgb(24 35 49 / 94%);
+    --color-focus: #f4c95d;
+  }
+}
+
+/* Turn off animated transitions and smooth scrolling for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

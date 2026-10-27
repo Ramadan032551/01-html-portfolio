@@ -1,0 +1,52 @@
+/* Modern CSS reset */
+
+*,
+*::before,
+*::after {
+    Box-sizing: border-box;
+}
+
+•	{
+    Margin: 0;
+}
+
+Html {
+    Scroll-behavior: smooth;
+}
+
+Body {
+    Min-height: 100vh;
+    Line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+Img,
+Picture,
+Video,
+Canvas,
+Svg {
+    Display: block;
+    Max-width: 100%;
+}
+
+Img {
+    Height: auto;
+}
+
+Input,
+Button,
+Textarea,
+Select {
+    Font: inherit;
+}
+
+A {
+    Color: inherit;
+}
+
+P,
+H1,
+H2,
+H3 {
+    Overflow-wrap: break-word;
+}
